@@ -7,10 +7,16 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['@ffmpeg/ffmpeg'], // ✅ This prevents pre-bundling ffmpeg
   },
-  server: {
-    allowedHosts: [
-      'localhost',
-      '72a4-106-219-145-138.ngrok-free.app', // 👈 your current ngrok domain
-    ]
+build: {
+    outDir: 'dist', // output directory (default is 'dist')
+    sourcemap: false, // or true if you want source maps
+    minify: 'esbuild', // or 'terser' or false
+    target: 'esnext', // JavaScript target
+    assetsDir: 'assets', // directory under outDir to place assets
+    rollupOptions: {
+      output: {
+        manualChunks: undefined, // customize chunk splitting
+      },
+    },
   },
 })
